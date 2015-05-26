@@ -4,30 +4,36 @@ A django app for building social networks (at the core of Naible services)
 
 # Examples
 
-`cd samples\g0ph`
+> cd samples/g0ph  
 
 A simple social network application.
 
+
+## Install packages
+> sudo pip install django-allauth  
+> sudo pip install django-rest-auth  
+> sudo pip install django-cors-headers  
+
 ## Running in Django
 
-```
-cd samples\g0ph
-python manage.py migrate
-# optionaly you wan tot create a super user
-python manage.py createsuperuser
-python manage.py runserver
-```
+> cd samples/g0ph  
+> python manage.py migrate  
+> \# Optionally you want to create a super user:  
+> python manage.py createsuperuser  
+> python manage.py runserver  
 
 # Angular
 
 For now we use a bit outdated grunt scripting. Good news that django 
 is properly configured to serve the developers version.
 
-The usual angular structure can be found in `samples\g0ph\g0ph\ng-app`.
+The usual angular structure can be found in `samples/g0ph/g0ph/ng-app`.
 
 First, build dependencies:
 
-`cd samples\g0ph\g0ph && npm install && bower install`
+> cd samples/g0ph/g0ph   
+> sudo npm install  
+> bower install  
 
 # License
 
