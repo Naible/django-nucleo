@@ -55,3 +55,15 @@ docs/_build/
 
 # PyBuilder
 target/
+
+# DB
+db.sqlite3
+
+# **Angular**
+# Node
+samples/g0ph/g0ph/node_modules/*
+# Bower
+samples/g0ph/g0ph/ng-app/bower_components/*
+# Grunt
+samples/g0ph/g0ph/.tmp/*
+samples/g0ph/g0ph/dist/*

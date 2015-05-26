@@ -26,6 +26,10 @@ TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# G0PH-related
+WEB_DOMAIN = 'g0ph.com'
+DEFAULT_FROM_EMAIL = 'admin@%s' % WEB_DOMAIN
+
 
 # Application definition
 
@@ -76,8 +80,86 @@ USE_L10N = True
 
 USE_TZ = True
 
+################################################################
+# EXTRA SECTIONS
+INSTALLED_APPS = list(INSTALLED_APPS)
+MIDDLEWARE_CLASSES = list(MIDDLEWARE_CLASSES)
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.7/howto/static-files/
+# Django nose tests
+# Usage: python manage.py test another.test:TestCase.test_method
+TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+INSTALLED_APPS.append('django_nose')
 
-STATIC_URL = '/static/'
+
+# Serve ANGULAR files
+STATIC_ROOT = ''
+if DEBUG:
+    STATIC_URL = '/ng-app/'
+else:
+    STATIC_URL = '/dist/'
+
+STATICFILES_DIRS = (
+    os.path.join(os.path.dirname(__file__), 'ng-app'),
+)
+
+#########################################
+# BEGIN of `allauth` + `rest-auth`
+LOGIN_URL = '/#/login'
+LOGOUT_URL = '/#/logout'
+LOGIN_REDIRECT_URL = '/'
+
+# 'allauth' + 'rest_auth'
+# https://django-allauth.readthedocs.org/en/latest/configuration.html
+# http://django-rest-auth.readthedocs.org/en/latest/demo.html
+REST_SESSION_LOGIN = False
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# `allauth` requires `django.contrib.sites` framework.
+SITE_ID = 1
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+if not DEBUG:
+    # Turn off in DEBUG mode.
+    ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
+
+AUTHENTICATION_BACKENDS = (
+    "allauth.account.auth_backends.AuthenticationBackend",
+)
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    )
+}
+
+# Modern auth with 3-rd party openauth providers.
+INSTALLED_APPS.append('django.contrib.sites')  # required by 'allauth'
+INSTALLED_APPS.append('allauth')
+INSTALLED_APPS.append('allauth.account')
+
+# Mobile ready auth
+INSTALLED_APPS.append('rest_framework')
+INSTALLED_APPS.append('rest_framework.authtoken')
+INSTALLED_APPS.append('rest_auth')
+INSTALLED_APPS.append('rest_auth.registration')
+# END of `allauth` + `rest-auth`
+#########################################
+
+#########################################
+# BEGIN of CORS (for cordova apps)
+# CORS_ORIGIN_WHITELIST = ('127.0.0.1:4400',)
+ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
+CORS_ALLOW_HEADERS = (
+    'x-requested-with',
+    'content-type',
+    'accept',
+    'origin',
+    'authorization',
+    'x-csrftoken',
+    'Api-Authorization',
+)
+INSTALLED_APPS.append('corsheaders')
+MIDDLEWARE_CLASSES.append('corsheaders.middleware.CorsMiddleware')
+# END of CORS
+#########################################
