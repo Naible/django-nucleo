@@ -4,7 +4,7 @@ angular.module('angularDjangoRegistrationAuthApp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
-  'ngRoute',
+  'ngRoute'
 ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -14,7 +14,7 @@ angular.module('angularDjangoRegistrationAuthApp', [
         resolve: {
           authenticated: ['djangoAuth', function(djangoAuth){
             return djangoAuth.authenticationStatus();
-          }],
+          }]
         }
       })
       .when('/register', {
@@ -22,7 +22,7 @@ angular.module('angularDjangoRegistrationAuthApp', [
         resolve: {
           authenticated: ['djangoAuth', function(djangoAuth){
             return djangoAuth.authenticationStatus();
-          }],
+          }]
         }
       })
       .when('/passwordReset', {
@@ -30,7 +30,7 @@ angular.module('angularDjangoRegistrationAuthApp', [
         resolve: {
           authenticated: ['djangoAuth', function(djangoAuth){
             return djangoAuth.authenticationStatus();
-          }],
+          }]
         }
       })
       .when('/passwordResetConfirm/:firstToken/:passwordResetToken', {
@@ -38,7 +38,7 @@ angular.module('angularDjangoRegistrationAuthApp', [
         resolve: {
           authenticated: ['djangoAuth', function(djangoAuth){
             return djangoAuth.authenticationStatus();
-          }],
+          }]
         }
       })
       .when('/login', {
@@ -46,7 +46,7 @@ angular.module('angularDjangoRegistrationAuthApp', [
         resolve: {
           authenticated: ['djangoAuth', function(djangoAuth){
             return djangoAuth.authenticationStatus();
-          }],
+          }]
         }
       })
       .when('/verifyEmail/:emailVerificationToken', {
@@ -54,7 +54,7 @@ angular.module('angularDjangoRegistrationAuthApp', [
         resolve: {
           authenticated: ['djangoAuth', function(djangoAuth){
             return djangoAuth.authenticationStatus();
-          }],
+          }]
         }
       })
       .when('/logout', {
@@ -62,7 +62,7 @@ angular.module('angularDjangoRegistrationAuthApp', [
         resolve: {
           authenticated: ['djangoAuth', function(djangoAuth){
             return djangoAuth.authenticationStatus();
-          }],
+          }]
         }
       })
       .when('/userProfile', {
@@ -70,7 +70,7 @@ angular.module('angularDjangoRegistrationAuthApp', [
         resolve: {
           authenticated: ['djangoAuth', function(djangoAuth){
             return djangoAuth.authenticationStatus();
-          }],
+          }]
         }
       })
       .when('/passwordChange', {
@@ -78,7 +78,7 @@ angular.module('angularDjangoRegistrationAuthApp', [
         resolve: {
           authenticated: ['djangoAuth', function(djangoAuth){
             return djangoAuth.authenticationStatus();
-          }],
+          }]
         }
       })
       .when('/restricted', {
@@ -87,7 +87,7 @@ angular.module('angularDjangoRegistrationAuthApp', [
         resolve: {
           authenticated: ['djangoAuth', function(djangoAuth){
             return djangoAuth.authenticationStatus();
-          }],
+          }]
         }
       })
       .when('/authRequired', {
@@ -96,7 +96,7 @@ angular.module('angularDjangoRegistrationAuthApp', [
         resolve: {
           authenticated: ['djangoAuth', function(djangoAuth){
             return djangoAuth.authenticationStatus(true);
-          }],
+          }]
         }
       })
       .otherwise({

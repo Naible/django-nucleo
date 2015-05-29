@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('angularDjangoRegistrationAuthApp')
-  .controller('MainCtrl', function ($scope, $cookies, $location, djangoAuth) {
+  .controller('MainCtrl', function ($scope, $cookies, $location, djangoAuth, $http) {
     
     $scope.login = function(){
       djangoAuth.login(prompt('Username'),prompt('password'))
@@ -72,6 +72,13 @@ angular.module('angularDjangoRegistrationAuthApp')
     });
     $scope.$on("djangoAuth.logged_out", function(data){
       $scope.show_login = true;
+    });
+
+    $scope.posts = [];
+    $http.get('/api/posts').then(function(result) {
+      angular.forEach(result.data, function(item) {
+        $scope.posts.push(item);
+      });
     });
 
   });
