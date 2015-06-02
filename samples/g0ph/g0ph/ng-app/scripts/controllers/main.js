@@ -84,8 +84,25 @@ angular.module('angularDjangoRegistrationAuthApp')
     $scope.post_text = '';
   	$scope.complete = false;
     $scope.addPost = function(formData){
+      function validatePost(post) {
+        var urlRegex = /^(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?$/;
+        var hashtagRegex = /^(#[a-z\d][\w-]*)$/;
+
+        console.log(urlRegex.test(post));
+        console.log(hashtagRegex.test(post));
+        console.log(urlRegex.test(post) || hashtagRegex.test(post));
+
+        return (urlRegex.test(post) || hashtagRegex.test(post));
+      }
+
       $scope.errors = [];
+      $scope.error = '';
+      if (!validatePost($scope.post_text)) {
+        $scope.error = 'Enter the correct url or hashtag';
+      }
+
       Validate.form_validation(formData, $scope.errors);
+
       if(!formData.$invalid){
         djangoAuth.profile().then(function(data){
           var username = data.username;
