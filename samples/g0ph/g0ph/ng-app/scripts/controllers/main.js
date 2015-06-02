@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('angularDjangoRegistrationAuthApp')
-  .controller('MainCtrl', function ($scope, $cookies, $location, djangoAuth, $http) {
+  .controller('MainCtrl', function ($scope, $cookies, $location, djangoAuth, $http, Validate) {
     
     $scope.login = function(){
       djangoAuth.login(prompt('Username'),prompt('password'))
@@ -81,4 +81,29 @@ angular.module('angularDjangoRegistrationAuthApp')
       });
     });
 
+    $scope.post_text = '';
+  	$scope.complete = false;
+    $scope.addPost = function(formData){
+      $scope.errors = [];
+      Validate.form_validation(formData, $scope.errors);
+      if(!formData.$invalid){
+        djangoAuth.profile().then(function(data){
+          var username = data.username;
+          var formPostData = {text: $scope.post_text, author: username};
+          $http({
+            method: 'POST',
+            url: '/api/posts',
+            data: formPostData,
+            headers: {'Content-Type': 'application/json'}
+          })
+          .then(function (data) {
+            // success case
+            $location.path("/");
+          }, function (data) {
+            // error case
+            $scope.errors = data;
+          });
+        });
+      }
+    }
   });

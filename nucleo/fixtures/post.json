@@ -4,7 +4,7 @@
     "pk": 1,
     "fields": {
       "text": "Post №1",
-      "user": 1
+      "author": 1
     }
   },
   {
@@ -12,7 +12,7 @@
     "pk": 2,
     "fields": {
       "text": "Post №2",
-      "user": 2
+      "author": 2
     }
   },
   {
@@ -20,7 +20,7 @@
     "pk": 3,
     "fields": {
       "text": "Post №3",
-      "user": 3
+      "author": 3
     }
   },
   {
@@ -28,7 +28,7 @@
     "pk": 4,
     "fields": {
       "text": "Post №4",
-      "user": 1
+      "author": 1
     }
   }
 ]
