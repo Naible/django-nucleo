@@ -1,0 +1,34 @@
+[
+  {
+    "model": "nucleo.post",
+    "pk": 1,
+    "fields": {
+      "text": "Post №1",
+      "author": 1
+    }
+  },
+  {
+    "model": "nucleo.post",
+    "pk": 2,
+    "fields": {
+      "text": "Post №2",
+      "author": 2
+    }
+  },
+  {
+    "model": "nucleo.post",
+    "pk": 3,
+    "fields": {
+      "text": "Post №3",
+      "author": 3
+    }
+  },
+  {
+    "model": "nucleo.post",
+    "pk": 4,
+    "fields": {
+      "text": "Post №4",
+      "author": 1
+    }
+  }
+]

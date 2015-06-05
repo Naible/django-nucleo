@@ -23,4 +23,15 @@
     <div ng-if="complete == true">
         <div class="alert alert-success">You have updated your profile.</div>
     </div>
+
+    <hr/>
+    <div class="panel" ng-repeat="post in posts">
+        <div class="panel-heading clearfix">
+            <author>{{ post.author.username }}</author>
+            <div class="pull-right">{{ post.date | date:'MMM d, y HH:mm'}}</div>
+        </div>
+        <p class="well">{{ post.text }}</p>
+    </div>
 </div>
+
+

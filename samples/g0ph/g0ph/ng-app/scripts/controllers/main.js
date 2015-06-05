@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('angularDjangoRegistrationAuthApp')
-  .controller('MainCtrl', function ($scope, $cookies, $location, djangoAuth) {
+  .controller('MainCtrl', function ($scope, $cookies, $location, djangoAuth, $http, Validate) {
     
     $scope.login = function(){
       djangoAuth.login(prompt('Username'),prompt('password'))
@@ -74,4 +74,53 @@ angular.module('angularDjangoRegistrationAuthApp')
       $scope.show_login = true;
     });
 
+    $scope.posts = [];
+    $http.get('/api/posts').then(function(result) {
+      angular.forEach(result.data, function(item) {
+        $scope.posts.push(item);
+      });
+    });
+
+    $scope.post_text = '';
+  	$scope.complete = false;
+    $scope.addPost = function(formData){
+      function validatePost(post) {
+        var urlRegex = /^(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?$/;
+        var hashtagRegex = /^(#[a-z\d][\w-]*)$/;
+
+        console.log(urlRegex.test(post));
+        console.log(hashtagRegex.test(post));
+        console.log(urlRegex.test(post) || hashtagRegex.test(post));
+
+        return (urlRegex.test(post) || hashtagRegex.test(post));
+      }
+
+      $scope.errors = [];
+      $scope.error = '';
+      if (!validatePost($scope.post_text)) {
+        $scope.error = 'Enter the correct url or hashtag';
+      }
+
+      Validate.form_validation(formData, $scope.errors);
+
+      if(!formData.$invalid){
+        djangoAuth.profile().then(function(data){
+          var username = data.username;
+          var formPostData = {text: $scope.post_text, author: username};
+          $http({
+            method: 'POST',
+            url: '/api/posts',
+            data: formPostData,
+            headers: {'Content-Type': 'application/json'}
+          })
+          .then(function (data) {
+            // success case
+            $location.path("/");
+          }, function (data) {
+            // error case
+            $scope.errors = data;
+          });
+        });
+      }
+    }
   });
