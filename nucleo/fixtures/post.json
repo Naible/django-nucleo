@@ -3,7 +3,7 @@
     "model": "nucleo.post",
     "pk": 1,
     "fields": {
-      "text": "Post №1",
+      "text": "http://chef.naible.com/",
       "author": 1
     }
   },
@@ -11,7 +11,7 @@
     "model": "nucleo.post",
     "pk": 2,
     "fields": {
-      "text": "Post №2",
+      "text": "https://github.com/Naible/django-nucleo",
       "author": 2
     }
   },
@@ -19,7 +19,7 @@
     "model": "nucleo.post",
     "pk": 3,
     "fields": {
-      "text": "Post №3",
+      "text": "https://trello.com/b/4ZhmddZU/naible-chef",
       "author": 3
     }
   },
@@ -27,7 +27,7 @@
     "model": "nucleo.post",
     "pk": 4,
     "fields": {
-      "text": "Post №4",
+      "text": "#naible",
       "author": 1
     }
   }

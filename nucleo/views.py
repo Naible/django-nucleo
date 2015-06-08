@@ -1,6 +1,10 @@
 from django.shortcuts import render
+import json
 
 from rest_framework import generics, permissions
+from rest_framework.response import Response
+from rest_framework import status
+from rest_framework.decorators import api_view
 
 
 from serializers import UserSerializer, PostSerializer
@@ -51,3 +55,21 @@ class UserPostList(generics.ListAPIView):
     def get_queryset(self):
         queryset = super(UserPostList, self).get_queryset()
         return queryset.filter(author__username=self.kwargs.get('username'))
+
+
+@api_view(['POST'])
+def add_post(request):
+    # POST request handler
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        print(repr(request.body))
+        print(data['text'])
+
+        author = User.objects.get(username=data['author'])
+
+        post = Post(
+            text=data['text'],
+            author=author)
+        post.save()
+
+        return Response(status=status.HTTP_201_CREATED)
