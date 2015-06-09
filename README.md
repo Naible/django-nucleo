@@ -10,9 +10,7 @@ A simple social network application.
 
 
 ## Install packages
-> sudo pip install django-allauth  
-> sudo pip install django-rest-auth  
-> sudo pip install django-cors-headers  
+> sudo pip install -r requirements.txt 
 
 ## Running in Django
 

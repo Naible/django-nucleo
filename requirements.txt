@@ -1,0 +1,5 @@
+django
+django-nose
+django-allauth
+django-rest-auth
+django-cors-headers
