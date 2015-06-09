@@ -1,4 +1,3 @@
-from django.shortcuts import render
 import json
 
 from rest_framework import generics, permissions
@@ -9,7 +8,8 @@ from rest_framework.decorators import api_view
 
 from serializers import UserSerializer, PostSerializer
 from django.contrib.auth.models import User
-from models import Post
+from django.core.exceptions import ObjectDoesNotExist
+from models import Post, UserProfile
 from permissions import PostAuthorCanEditPermission
 
 
@@ -62,14 +62,35 @@ def add_post(request):
     # POST request handler
     if request.method == 'POST':
         data = json.loads(request.body)
-        print(repr(request.body))
-        print(data['text'])
+        author = request.user
 
-        author = User.objects.get(username=data['author'])
-
-        post = Post(
-            text=data['text'],
-            author=author)
+        post = Post(text=data['text'], author=author)
         post.save()
+
+        return Response(status=status.HTTP_201_CREATED)
+
+
+@api_view(['POST'])
+def follow(request):
+    # POST request handler
+    if request.method == 'POST':
+        data = json.loads(request.body)
+
+        follower = request.user
+        follows = User.objects.get(username=data['follows'])
+
+        try:
+            follower_profile = UserProfile.objects.get(user=follower)
+        except ObjectDoesNotExist:
+            follower_profile = UserProfile(user=follower)
+            follower_profile.save()
+
+        try:
+            follows_profile = UserProfile.objects.get(user=follows)
+        except ObjectDoesNotExist:
+            follows_profile = UserProfile(user=follows)
+            follows_profile.save()
+
+        follower_profile.follows.add(follows_profile)
 
         return Response(status=status.HTTP_201_CREATED)

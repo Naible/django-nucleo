@@ -41,4 +41,5 @@ urlpatterns += patterns('',
     url(r'^api/users', include(user_urls)),
     url(r'^api/posts', include(post_urls)),
     url(r'^api/add_post$', 'nucleo.views.add_post', name='add_post'),
+    url(r'^api/follow$', 'nucleo.views.follow', name='follow'),
 )

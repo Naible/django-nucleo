@@ -102,24 +102,38 @@ angular.module('angularDjangoRegistrationAuthApp')
       Validate.form_validation(formData, $scope.errors);
 
       if(!formData.$invalid && postIsValid){
-        djangoAuth.profile().then(function(data){
-          var username = data.username;
-          var formPostData = {text: $scope.post_text, author: username};
-          $http({
-            method: 'POST',
-            //url: '/api/posts',
-            url: '/api/add_post',
-            data: formPostData,
-            headers: {'Content-Type': 'application/json'}
-          })
-          .then(function (data) {
-            // success case
-            $route.reload();
-          }, function (data) {
-            // error case
-            $scope.errors = data;
-          });
+        var formPostData = {text: $scope.post_text};
+        $http({
+          method: 'POST',
+          url: '/api/add_post',
+          data: formPostData,
+          headers: {'Content-Type': 'application/json'}
+        })
+        .then(function (data) {
+          // success case
+          $route.reload();
+        }, function (data) {
+          // error case
+          $scope.errors = data;
         });
       }
+    }
+
+    $scope.followUser = function(username) {
+      var formPostData = {follows: username};
+
+      $http({
+        method: 'POST',
+        url: '/api/follow',
+        data: formPostData,
+        headers: {'Content-Type': 'application/json'}
+      })
+      .then(function (data) {
+        // success case
+        $route.reload();
+      }, function (data) {
+        // error case
+        $scope.errors = data;
+      });
     }
   });
