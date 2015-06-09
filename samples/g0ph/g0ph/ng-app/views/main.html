@@ -37,16 +37,21 @@
 <!--<div ng-if="!show_login" class="alert alert-info">You have logged in.</div>-->
 
 <hr/>
-<h4 class="text-center">Users' posts.</h4>
+<h4 class="text-center">All posts.</h4>
 <div class="panel" ng-repeat="post in posts">
   <div class="panel-heading clearfix">
     <author>{{ post.author.username }}</author>
+    <button type="button" class="btn btn-primary btn-xs"
+            ng-click="followUser(post.author.username)" ng-hide="post.author.username == username">
+      Follow
+    </button>
     <div class="pull-right">{{ post.date | date:'MMM d, y HH:mm'}}</div>
   </div>
   <p class="well">{{ post.text }}</p>
 </div>
 
 <div ng-show="authenticated">
+  <h4 class="text-center">Add post.</h4>
   <form role="form" ng-submit="addPost(addPostForm)" name="addPostForm" novalidate>
     <div class="form-group">
       <label for="post_text">Text</label>
@@ -62,4 +67,3 @@
 <div class="footer pull-right">
   <p>© 2015 G0ph</p>
 </div>
-
