@@ -109,7 +109,7 @@ angular.module('angularDjangoRegistrationAuthApp')
           data: formPostData,
           headers: {'Content-Type': 'application/json'}
         })
-        .then(function (data) {
+        .then(function () {
           // success case
           $route.reload();
         }, function (data) {
@@ -117,7 +117,7 @@ angular.module('angularDjangoRegistrationAuthApp')
           $scope.errors = data;
         });
       }
-    }
+    };
 
     $scope.followUser = function(username) {
       var formPostData = {follows: username};
@@ -128,12 +128,41 @@ angular.module('angularDjangoRegistrationAuthApp')
         data: formPostData,
         headers: {'Content-Type': 'application/json'}
       })
-      .then(function (data) {
+      .then(function () {
         // success case
         $route.reload();
       }, function (data) {
         // error case
         $scope.errors = data;
       });
-    }
+    };
+
+    $scope.unfollowUser = function(username) {
+      var formPostData = {unfollow: username};
+
+      $http({
+        method: 'POST',
+        url: '/api/unfollow',
+        data: formPostData,
+        headers: {'Content-Type': 'application/json'}
+      })
+      .then(function () {
+        // success case
+        $route.reload();
+      }, function (data) {
+        // error case
+        $scope.errors = data;
+      });
+    };
+
+    $scope.caption = 'Following';
+
+    $scope.followingNames = [];
+    $http.post('/api/following', [])
+    .success(function (data) {
+      for (var i=0; i < data.length; i++) {
+        $scope.followingNames.push(data[i]);
+        console.log(data[i]);
+      }
+    })
   });

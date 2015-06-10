@@ -28,9 +28,11 @@
         <div class="header">
           <ul class="nav nav-pills pull-right">
             <li ng-show="authenticated" class="ng-hide"><a ng-href="#/userProfile">{{username}}</a></li>
-            <li class="active"><a ng-href="#/">Home</a></li>
+            <li ng-hide="authenticated" class="ng-hide"><a ng-href="#/login">Login</a></li>
+            <li ng-hide="authenticated" class="ng-hide"><a ng-href="#/register">Register</a></li>
+            <li ng-show="authenticated" class="ng-show"><a ng-href="#/logout">Logout</a></li>
           </ul>
-          <h3 class="text-muted">G0ph</h3>
+          <h3 class="text-muted"><a ng-href="#/">G0ph</a></h3>
         </div>
 
         <!-- Add your site or application content here -->
