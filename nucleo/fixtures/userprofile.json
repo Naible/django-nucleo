@@ -1,0 +1,25 @@
+[
+{
+    "fields": {
+        "follows": []
+    },
+    "model": "nucleo.userprofile",
+    "pk": 1
+},
+{
+    "fields": {
+        "follows": []
+    },
+    "model": "nucleo.userprofile",
+    "pk": 3
+},
+{
+    "fields": {
+        "follows": [
+            3
+        ]
+    },
+    "model": "nucleo.userprofile",
+    "pk": 4
+}
+]

@@ -27,6 +27,10 @@ To add some demo fixtures:
 
 This creates super user `g0ph` password `g0ph`.
 
+NB to dump a fixture use a command like this:
+
+>./manage.py dumpdata --indent 4 nucleo.userprofile > nucleo/fixtures/userprofile.json
+
 
 # Angular
 
