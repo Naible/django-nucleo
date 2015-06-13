@@ -14,7 +14,8 @@ class Post(models.Model):
 #  UserProfile model
 class UserProfile(models.Model):
     user = models.OneToOneField(User, primary_key=True)
-    follows = models.ManyToManyField('self', related_name='followed_by', symmetrical=False)
+    follows = models.ManyToManyField('self', related_name='followed_by',
+                                     symmetrical=False)
 
     def __unicode__(self):
         return self.user.username
