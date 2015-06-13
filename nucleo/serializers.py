@@ -1,7 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
-from models import Post
-
+from models import Post, UserProfile
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -14,7 +13,6 @@ class UserSerializer(serializers.ModelSerializer):
 
 class PostSerializer(serializers.ModelSerializer):
     author = UserSerializer(required=False)
-    # author = serializers.HyperlinkedRelatedField(view_name='user-detail', lookup_field='username')
 
     def get_validation_exclusions(self, *args, **kwargs):
         # Need to exclude `user` since we'll add that later based off the request
@@ -23,3 +21,10 @@ class PostSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Post
+
+
+class UserProfileSerializer(serializers.ModelSerializer):
+    follows = UserSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = UserProfile

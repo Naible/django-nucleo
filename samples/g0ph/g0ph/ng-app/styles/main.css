@@ -1,7 +1,21 @@
 /* Space out content a bit */
 body {
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding-top: 65px;
+  background-position: 0px 50px;
+  background-image: url(../images/bg.png);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-color: #C0DEED;
+}
+
+.alert.alert-danger {
+  margin: 10px 0;
+  padding: 10px 15px;
+}
+
+.list-group p {
+  margin: 10px 0;
+  font-size: 115%;
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */

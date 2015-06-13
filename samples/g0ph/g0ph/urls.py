@@ -42,4 +42,6 @@ urlpatterns += patterns('',
     url(r'^api/posts', include(post_urls)),
     url(r'^api/add_post$', 'nucleo.views.add_post', name='add_post'),
     url(r'^api/follow$', 'nucleo.views.follow', name='follow'),
+    url(r'^api/unfollow$', 'nucleo.views.unfollow', name='unfollow'),
+    url(r'^api/following$', 'nucleo.views.following', name='following'),
 )
