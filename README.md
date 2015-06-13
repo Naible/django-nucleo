@@ -20,6 +20,12 @@ A simple social network application.
 > python manage.py createsuperuser  
 > python manage.py runserver  
 
+To add some demo fixtures:
+
+> python manage.py loaddata nucleo/fixtures/user.json
+> python manage.py loaddata nucleo/fixtures/post.json
+
+
 # Angular
 
 For now we use a bit outdated grunt scripting. Good news that django 
