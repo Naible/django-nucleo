@@ -1,3 +1,7 @@
+try:
+    import json
+except ImportError:
+    import simplejson as json
 from django.test import TestCase
 from django.contrib.auth.models import User
 
@@ -5,7 +9,7 @@ from django.contrib.auth.models import User
 class TestNucleoApi(TestCase):
     '''API TESTs'''
 
-    fixtures = ['user.json', 'post.json']
+    fixtures = ['user.json', 'post.json', 'userprofile.json']
 
     def setUp(self):
         self.mock_user = {
@@ -23,6 +27,15 @@ class TestNucleoApi(TestCase):
         # Each self.client.get show pass follow=True
 
     def test_following(self):
+        # test a normal "logged-in" situation
         response = self.client.post('/api/following', {})
-        print response
-        assert False
+        self.assertEqual(response.status_code, 200)
+        following = json.loads(response.content)
+        assert 'user1' in following
+        # Log out and check what comes out
+        self.client.logout()
+        response = self.client.post('/api/following', {})
+        self.assertEqual(response.status_code, 200)
+        following = json.loads(response.content)
+        assert len(following) == 0
+

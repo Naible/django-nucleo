@@ -120,6 +120,10 @@ def following(request):
     if request.method == 'POST':
         follower = request.user
 
+        if str(follower) == 'AnonymousUser':
+            # Makes sense only when user is logged in.
+            return JsonResponse([], safe=False)
+
         try:
             follower_profile = UserProfile.objects.get(user=follower)
         except ObjectDoesNotExist:
@@ -130,8 +134,8 @@ def following(request):
 
         following_usernames = []
 
-        for e in following_list:
-            current_user = e.user
+        for following in following_list:
+            current_user = following.user
             following_usernames.append(current_user.username)
 
         return JsonResponse(following_usernames, safe=False)
