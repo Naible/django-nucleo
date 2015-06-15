@@ -22,8 +22,8 @@ A simple social network application.
 
 To add some demo fixtures:
 
-> python manage.py loaddata nucleo/fixtures/user.json
-> python manage.py loaddata nucleo/fixtures/post.json
+> python manage.py loaddata nucleo/fixtures/user.json  
+> python manage.py loaddata nucleo/fixtures/post.json  
 
 This creates super user `g0ph` password `g0ph`.
 

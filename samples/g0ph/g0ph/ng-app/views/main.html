@@ -4,7 +4,7 @@
     <form ng-show="authenticated" role="form" ng-submit="addPost(addPostForm)" name="addPostForm" novalidate>
       <div class="input-group">
         <input name="text" type="text" ng-model="post_text"
-               placeholder="Add url or hashtag" class="form-control" required />
+               placeholder="Example: http://someurl.com/ #hashtag" class="form-control" required />
         <span class="input-group-btn">
           <button class="btn btn-primary" type="submit">Add post</button>
         </span>

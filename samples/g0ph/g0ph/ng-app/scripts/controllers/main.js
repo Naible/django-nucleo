@@ -85,17 +85,19 @@ angular.module('angularDjangoRegistrationAuthApp')
   	$scope.complete = false;
     $scope.addPost = function(formData){
       function validatePost(post) {
-        var urlRegex = /^(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?$/;
-        var hashtagRegex = /^(#[a-z\d][\w-]*)$/;
+        // Regexp for text like this: "http://someurl.com/ #hashtag" or "http://someurl.com/ #hashtag #otherhashtag"
+        var urlHashtagRegexp = /^(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@\-\/]))?(\s#[a-z\d][\w-]*)+$/;
+        // Regexp for text like this: "#hashtag http://someurl.com/" or "#hashtag #otherhashtag http://someurl.com/"
+        var hashtagUrlRegexp = /^(#[a-z\d][\w-]*\s)+(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@\-\/]))?$/;
 
-        return (urlRegex.test(post) || hashtagRegex.test(post));
+        return (urlHashtagRegexp.test(post) || hashtagUrlRegexp.test(post));
       }
 
       $scope.errors = [];
       $scope.error = '';
       var postIsValid = true;
       if (!validatePost($scope.post_text)) {
-        $scope.error = 'Enter the correct url or hashtag';
+        $scope.error = 'Enter the correct url and hashtag';
         postIsValid = false;
       }
 
