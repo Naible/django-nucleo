@@ -18,6 +18,16 @@ body {
   font-size: 115%;
 }
 
+.btn-facebook {
+    background: #3b5998;
+    color: #fff
+}
+
+.btn-facebook:active, .btn-facebook:hover {
+    background: #30477a;
+    color: #fff
+}
+
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
 .marketing,

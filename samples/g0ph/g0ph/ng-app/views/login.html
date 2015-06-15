@@ -15,6 +15,7 @@
         <div class="alert alert-danger" ng-repeat="error in errors.non_field_errors">{{error}}</div>
         <div class="alert alert-danger" ng-if="error">{{error}}</div>
         <button type="submit" class="btn btn-primary">Login</button>
+        <button type="button" class="btn btn-facebook" ng-click="loginFacebook()">Facebook</button>
       </form>
     </div>
   </div>
