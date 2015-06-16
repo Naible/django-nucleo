@@ -6,7 +6,10 @@ angular.module('angularDjangoRegistrationAuthApp', [
   'ngSanitize',
   'ngRoute'
 ])
-  .config(function ($routeProvider) {
+  .config(function ($routeProvider, $httpProvider) {
+    $httpProvider.defaults.xsrfCookieName = 'csrftoken';
+    $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
+
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
