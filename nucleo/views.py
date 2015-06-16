@@ -13,6 +13,13 @@ from django.core.exceptions import ObjectDoesNotExist
 from models import Post, UserProfile
 from permissions import PostAuthorCanEditPermission
 
+from allauth.socialaccount.providers.facebook.views import FacebookOAuth2Adapter
+from rest_auth.registration.views import SocialLogin
+
+
+class FacebookLogin(SocialLogin):
+    adapter_class = FacebookOAuth2Adapter
+
 
 class UserList(generics.ListCreateAPIView):
     queryset = User.objects.all()

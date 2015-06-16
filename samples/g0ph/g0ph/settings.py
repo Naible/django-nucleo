@@ -115,7 +115,7 @@ LOGIN_REDIRECT_URL = '/'
 REST_SESSION_LOGIN = False
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # `allauth` requires `django.contrib.sites` framework.
-SITE_ID = 1
+SITE_ID = 3
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 if not DEBUG:
