@@ -15,13 +15,17 @@ body {
 }
 
 .btn-facebook {
-    background: #3b5998;
-    color: #fff
+  color: #fff;
+  background-color: #3b5998;
+  border-color: rgba(0,0,0,0.2);
 }
 
-.btn-facebook:active, .btn-facebook:hover {
-    background: #30477a;
-    color: #fff
+.btn-facebook:hover ,
+.btn-facebook:focus,
+.btn-facebook.active {
+  color: #fff;
+  background-color: #2d4373;
+  border-color: rgba(0,0,0,0.2);
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
