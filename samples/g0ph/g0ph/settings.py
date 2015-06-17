@@ -159,6 +159,14 @@ TEMPLATES = [
     },
 ]
 
+SOCIALACCOUNT_PROVIDERS = \
+    {'facebook':
+       {'SCOPE': ['email', 'public_profile', 'user_friends'],
+        'AUTH_PARAMS': {},
+        'METHOD': 'oauth2',
+        'VERIFIED_EMAIL': False,
+        'VERSION': 'v2.3'}}
+
 # Modern auth with 3-rd party openauth providers.
 INSTALLED_APPS.append('django.contrib.sites')  # required by 'allauth'
 INSTALLED_APPS.append('allauth')

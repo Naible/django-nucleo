@@ -164,7 +164,6 @@ angular.module('angularDjangoRegistrationAuthApp')
     .success(function (data) {
       for (var i=0; i < data.length; i++) {
         $scope.followingNames.push(data[i]);
-        console.log(data[i]);
       }
     })
   });
