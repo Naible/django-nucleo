@@ -2,6 +2,7 @@ from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from nucleo.views import UserList, UserDetail
 from nucleo.views import PostList, PostDetail, UserPostList
+from nucleo.views import FacebookLogin
 
 # Configure django only for ADMIN and API.
 urlpatterns = patterns(
@@ -44,4 +45,5 @@ urlpatterns += patterns('',
     url(r'^api/follow$', 'nucleo.views.follow', name='follow'),
     url(r'^api/unfollow$', 'nucleo.views.unfollow', name='unfollow'),
     url(r'^api/following$', 'nucleo.views.following', name='following'),
+    url(r'^rest-auth/facebook/$', FacebookLogin.as_view(), name='fb_login')
 )

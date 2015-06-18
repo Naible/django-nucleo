@@ -18,4 +18,8 @@ angular.module('angularDjangoRegistrationAuthApp')
         });
       }
     }
+
+    $scope.registerFacebook = function(){
+      window.location = ("/account/facebook/login/?process=login");
+    }
   });

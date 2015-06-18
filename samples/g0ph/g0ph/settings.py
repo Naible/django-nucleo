@@ -115,7 +115,7 @@ LOGIN_REDIRECT_URL = '/'
 REST_SESSION_LOGIN = False
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # `allauth` requires `django.contrib.sites` framework.
-SITE_ID = 1
+SITE_ID = 3
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 if not DEBUG:
@@ -124,7 +124,11 @@ if not DEBUG:
 ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 
 AUTHENTICATION_BACKENDS = (
-    "allauth.account.auth_backends.AuthenticationBackend",
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
 )
 
 REST_FRAMEWORK = {
@@ -134,10 +138,41 @@ REST_FRAMEWORK = {
     )
 }
 
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.contrib.auth.context_processors.auth',
+                # Already defined Django-related contexts here
+
+                # `allauth` needs this from django
+                'django.core.context_processors.request',
+
+                # `allauth` specific context processors
+                'allauth.account.context_processors.account',
+                'allauth.socialaccount.context_processors.socialaccount',
+            ],
+        },
+    },
+]
+
+SOCIALACCOUNT_PROVIDERS = \
+    {'facebook':
+       {'SCOPE': ['email', 'public_profile', 'user_friends'],
+        'AUTH_PARAMS': {},
+        'METHOD': 'oauth2',
+        'VERIFIED_EMAIL': False,
+        'VERSION': 'v2.3'}}
+
 # Modern auth with 3-rd party openauth providers.
 INSTALLED_APPS.append('django.contrib.sites')  # required by 'allauth'
 INSTALLED_APPS.append('allauth')
 INSTALLED_APPS.append('allauth.account')
+INSTALLED_APPS.append('allauth.socialaccount')
+INSTALLED_APPS.append('allauth.socialaccount.providers.facebook')
 
 # Mobile ready auth
 INSTALLED_APPS.append('rest_framework')
@@ -150,6 +185,7 @@ INSTALLED_APPS.append('rest_auth.registration')
 #########################################
 # BEGIN of CORS (for cordova apps)
 # CORS_ORIGIN_WHITELIST = ('127.0.0.1:4400',)
+CORS_ORIGIN_WHITELIST = ('localhost:8000',)
 ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
 CORS_ALLOW_HEADERS = (
     'x-requested-with',

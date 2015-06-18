@@ -9,7 +9,7 @@ angular.module('angularDjangoRegistrationAuthApp')
       Validate.form_validation(formData,$scope.errors);
       if(!formData.$invalid){
         djangoAuth.login($scope.model.username, $scope.model.password)
-        .then(function(data){
+        .then(function(){
         	// success case
         	$location.path("/");
         },function(data){
@@ -17,5 +17,9 @@ angular.module('angularDjangoRegistrationAuthApp')
         	$scope.errors = data;
         });
       }
+    };
+
+    $scope.loginFacebook = function(){
+      window.location = ("/account/facebook/login/?process=login");
     }
   });
