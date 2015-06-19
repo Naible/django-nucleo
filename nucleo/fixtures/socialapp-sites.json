@@ -1,0 +1,10 @@
+[
+  {
+    "fields": {
+      "socialapp": 1,
+      "site": 1
+    },
+    "model": "socialaccount.socialapp_sites",
+    "pk": 1
+  }
+]

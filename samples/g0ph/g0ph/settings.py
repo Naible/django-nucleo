@@ -101,8 +101,6 @@ else:
 
 STATICFILES_DIRS = (
     os.path.join(os.path.dirname(__file__), 'ng-app'),
-    '/usr/local/lib/python2.7/dist-packages/rest_framework/static/',
-    '/usr/local/lib/python2.7/dist-packages/django/contrib/admin/static/',
 )
 
 #########################################
