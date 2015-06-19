@@ -101,6 +101,8 @@ else:
 
 STATICFILES_DIRS = (
     os.path.join(os.path.dirname(__file__), 'ng-app'),
+    '/usr/local/lib/python2.7/dist-packages/rest_framework/static/',
+    '/usr/local/lib/python2.7/dist-packages/django/contrib/admin/static/',
 )
 
 #########################################
@@ -185,8 +187,8 @@ INSTALLED_APPS.append('rest_auth.registration')
 #########################################
 # BEGIN of CORS (for cordova apps)
 # CORS_ORIGIN_WHITELIST = ('127.0.0.1:4400',)
-CORS_ORIGIN_WHITELIST = ('localhost:8000',)
-ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
+CORS_ORIGIN_WHITELIST = ('localhost:8000', 'g0ph.com')
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", 'g0ph.com']
 CORS_ALLOW_HEADERS = (
     'x-requested-with',
     'content-type',
