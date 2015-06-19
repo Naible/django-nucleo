@@ -1,0 +1,10 @@
+[
+  {
+    "fields": {
+      "domain": "http://g0ph.com/",
+      "name": "http://g0ph.com/"
+    },
+    "model": "sites.site",
+    "pk": 1
+  }
+]
