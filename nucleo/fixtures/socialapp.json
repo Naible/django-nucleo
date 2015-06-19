@@ -1,0 +1,12 @@
+[
+  {
+    "fields": {
+      "provider": "facebook",
+      "name": "g0ph",
+      "client_id": "373896476141877",
+      "secret": "916b983d64eabf595b254c610ced7bf7"
+    },
+    "model": "socialaccount.socialapp",
+    "pk": 1
+  }
+]
