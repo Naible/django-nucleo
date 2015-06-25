@@ -1,0 +1,44 @@
+[
+  {
+    "model": "nucleo.cuisine",
+    "pk": 1,
+    "fields": {
+      "cuisine": "Italian"
+    }
+  },
+  {
+    "model": "nucleo.cuisine",
+    "pk": 2,
+    "fields": {
+      "cuisine": "Asian"
+    }
+  },
+  {
+    "model": "nucleo.cuisine",
+    "pk": 3,
+    "fields": {
+      "cuisine": "International"
+    }
+  },
+  {
+    "model": "nucleo.cuisine",
+    "pk": 4,
+    "fields": {
+      "cuisine": "Indian"
+    }
+  },
+  {
+    "model": "nucleo.cuisine",
+    "pk": 5,
+    "fields": {
+      "cuisine": "Pizzeria"
+    }
+  },
+  {
+    "model": "nucleo.cuisine",
+    "pk": 6,
+    "fields": {
+      "cuisine": "Steakhouse & Grill"
+    }
+  }
+]
