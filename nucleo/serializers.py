@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
-from models import Post, UserProfile
+from models import Post, Cuisine, Atmosphere, Restaurant, UserProfile
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -23,8 +23,24 @@ class PostSerializer(serializers.ModelSerializer):
         model = Post
 
 
+class CuisineSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Cuisine
+
+
+class AtmosphereSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Atmosphere
+
+
+class RestaurantSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Restaurant
+
+
 class UserProfileSerializer(serializers.ModelSerializer):
     follows = UserSerializer(many=True, read_only=True)
+    favorites = RestaurantSerializer(many=True, read_only=True)
 
     class Meta:
         model = UserProfile
