@@ -1,0 +1,23 @@
+[
+  {
+    "model": "nucleo.atmosphere",
+    "pk": 1,
+    "fields": {
+      "atmosphere": "Romantic"
+    }
+  },
+  {
+    "model": "nucleo.atmosphere",
+    "pk": 2,
+    "fields": {
+      "atmosphere": "Elegant"
+    }
+  },
+  {
+    "model": "nucleo.atmosphere",
+    "pk": 3,
+    "fields": {
+      "atmosphere": "Relaxing"
+    }
+  }
+]

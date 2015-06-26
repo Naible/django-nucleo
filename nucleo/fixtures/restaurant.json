@@ -1,0 +1,112 @@
+[
+  {
+    "model": "nucleo.restaurant",
+    "pk": 1,
+    "fields": {
+      "name": "Didis Frieden",
+      "address": "Stampfenbachstrasse 32, Zurich 8006, Switzerland",
+      "image": "restaurant-1.jpg",
+      "cuisines": [1, 2, 3],
+      "atmospheres": [1, 2]
+    }
+  },
+  {
+    "model": "nucleo.restaurant",
+    "pk": 2,
+    "fields": {
+      "name": "Hummer & Austernbar Zurich",
+      "address": "Bahnhofstrasse 87, Zurich 8023, Switzerland",
+      "image": "restaurant-2.jpg",
+      "cuisines": [6],
+      "atmospheres": [3]
+    }
+  },
+  {
+    "model": "nucleo.restaurant",
+    "pk": 3,
+    "fields": {
+      "name": "Stefs Freieck",
+      "address": "Wildbachstrasse 42, Zurich 8008, Switzerland",
+      "image": "restaurant-3.jpg",
+      "cuisines": [2, 3, 4],
+      "atmospheres": [2, 3]
+    }
+  },
+  {
+    "model": "nucleo.restaurant",
+    "pk": 4,
+    "fields": {
+      "name": "My Kitchen",
+      "address": "Franklinstrasse 6, Zurich 8050, Switzerland",
+      "image": "restaurant-4.jpg",
+      "cuisines": [1, 3],
+      "atmospheres": [1]
+    }
+  },
+  {
+    "model": "nucleo.restaurant",
+    "pk": 5,
+    "fields": {
+      "name": "Restaurant Weisses Rossli",
+      "address": "Bederstrasse 96 | (Nahe Sihlcity), Zurich 8002, Switzerland",
+      "image": "restaurant-5.jpg",
+      "cuisines": [1, 3, 5],
+      "atmospheres": [3]
+    }
+  },
+  {
+    "model": "nucleo.restaurant",
+    "pk": 6,
+    "fields": {
+      "name": "Le Chef",
+      "address": "Kanonengasse 29, Zurich 8004, Switzerland",
+      "image": "restaurant-6.jpg",
+      "cuisines": [3, 6],
+      "atmospheres": [2, 3]
+    }
+  },
+  {
+    "model": "nucleo.restaurant",
+    "pk": 7,
+    "fields": {
+      "name": "Differente - Krone Unterstrass",
+      "address": "Schaffhauserstr. 1, Zurich 8006, Switzerland",
+      "image": "restaurant-7.jpg",
+      "cuisines": [1, 5],
+      "atmospheres": [1]
+    }
+  },
+  {
+    "model": "nucleo.restaurant",
+    "pk": 8,
+    "fields": {
+      "name": "The Restaurant",
+      "address": "Kurhausstrasse 65 | at The Dolder Grand, Zurich 8032, Switzerland",
+      "image": "restaurant-8.jpg",
+      "cuisines": [2, 4],
+      "atmospheres": [1, 3]
+    }
+  },
+  {
+    "model": "nucleo.restaurant",
+    "pk": 9,
+    "fields": {
+      "name": "Restaurant Pavillon",
+      "address": "Talstrasse 1, Zurich 8001, Switzerland",
+      "image": "restaurant-9.jpg",
+      "cuisines": [2, 6],
+      "atmospheres": [2, 3]
+    }
+  },
+  {
+    "model": "nucleo.restaurant",
+    "pk": 10,
+    "fields": {
+      "name": "Kindli",
+      "address": "Pfalzgasse 1, Zurich 8001, Switzerland",
+      "image": "restaurant-10.jpg",
+      "cuisines": [1, 3, 5],
+      "atmospheres": [1]
+    }
+  }
+]

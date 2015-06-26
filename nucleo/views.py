@@ -7,10 +7,10 @@ from rest_framework import status
 from rest_framework.decorators import api_view
 
 
-from serializers import UserSerializer, PostSerializer, UserProfileSerializer
+from serializers import UserSerializer, PostSerializer, RestaurantSerializer
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
-from models import Post, UserProfile
+from models import Post, Restaurant, UserProfile
 from permissions import PostAuthorCanEditPermission
 
 from allauth.socialaccount.providers.facebook.views import FacebookOAuth2Adapter
@@ -53,6 +53,22 @@ class PostList(PostMixin, generics.ListCreateAPIView):
 
 
 class PostDetail(PostMixin, generics.RetrieveUpdateDestroyAPIView):
+    pass
+
+
+class RestaurantMixin(object):
+    queryset = Restaurant.objects.all()
+    serializer_class = RestaurantSerializer
+    permission_classes = [
+        PostAuthorCanEditPermission
+    ]
+
+
+class RestaurantList(RestaurantMixin, generics.ListCreateAPIView):
+    pass
+
+
+class RestaurantDetail(RestaurantMixin, generics.RetrieveUpdateDestroyAPIView):
     pass
 
 
