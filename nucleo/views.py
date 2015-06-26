@@ -60,7 +60,7 @@ class RestaurantMixin(object):
     queryset = Restaurant.objects.all()
     serializer_class = RestaurantSerializer
     permission_classes = [
-        PostAuthorCanEditPermission
+        permissions.AllowAny
     ]
 
 
@@ -70,6 +70,28 @@ class RestaurantList(RestaurantMixin, generics.ListCreateAPIView):
 
 class RestaurantDetail(RestaurantMixin, generics.RetrieveUpdateDestroyAPIView):
     pass
+
+
+class FavoriteList(generics.ListAPIView):
+    serializer_class = RestaurantSerializer
+    permission_classes = [
+        permissions.AllowAny
+    ]
+
+    def get_queryset(self):
+        current_user = self.request.user
+
+        if str(current_user) == 'AnonymousUser':
+            # Makes sense only when user is logged in.
+            return Restaurant.objects.all()
+
+        try:
+            user_profile = UserProfile.objects.get(user=current_user)
+        except ObjectDoesNotExist:
+            user_profile = UserProfile(user=current_user)
+            user_profile.save()
+
+        return user_profile.favorites.all()
 
 
 class UserPostList(generics.ListAPIView):
@@ -162,3 +184,39 @@ def following(request):
             following_usernames.append(current_user.username)
 
         return JsonResponse(following_usernames, safe=False)
+
+
+@api_view(['POST'])
+def add_favorite(request):
+    # POST request handler
+    if request.method == 'POST':
+        data = json.loads(request.body)
+
+        current_user = request.user
+        restaurant = Restaurant.objects.get(id=data['restaurant'])
+
+        try:
+            user_profile = UserProfile.objects.get(user=current_user)
+        except ObjectDoesNotExist:
+            user_profile = UserProfile(user=current_user)
+            user_profile.save()
+
+        user_profile.favorites.add(restaurant)
+
+        return Response(status=status.HTTP_201_CREATED)
+
+
+@api_view(['POST'])
+def remove_favorite(request):
+    # POST request handler
+    if request.method == 'POST':
+        data = json.loads(request.body)
+
+        current_user = request.user
+        restaurant = Restaurant.objects.get(id=data['restaurant'])
+
+        user_profile = UserProfile.objects.get(user=current_user)
+
+        user_profile.favorites.remove(restaurant)
+
+        return Response(status=status.HTTP_204_NO_CONTENT)

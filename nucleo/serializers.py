@@ -34,6 +34,9 @@ class AtmosphereSerializer(serializers.ModelSerializer):
 
 
 class RestaurantSerializer(serializers.ModelSerializer):
+    cuisines = CuisineSerializer(many=True, read_only=True)
+    atmospheres = AtmosphereSerializer(many=True, read_only=True)
+
     class Meta:
         model = Restaurant
 
