@@ -1,0 +1,15 @@
+[
+  '{{repeat(4096)}}',
+  {
+    model: 'nucleo.restaurant',
+    pk: '{{index() + 11}}',
+    fields: 
+      {
+        name: '{{company().toUpperCase()}}',
+        address: '{{integer(100, 999)}} {{street()}}, {{city()}}, {{state()}}, {{integer(100, 10000)}}',
+        image: "restaurant-{{integer(1, 10)}}.jpg",
+        cuisines: ['{{integer(1, 2)}}', '{{integer(3, 4)}}', '{{integer(5, 6)}}'],
+        atmospheres: ['1', '{{integer(2, 3)}}']
+      }
+  }
+]
